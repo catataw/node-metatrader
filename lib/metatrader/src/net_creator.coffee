@@ -11,4 +11,4 @@ module.exports = class HttpsCreator extends InterfaceCreator
     return new NetClient(executor)
 
   createExecutor: (options) ->
-    return new NetExecutor(options.host, options.port, callback);
+    return new NetExecutor(options.host, options.port);
