@@ -9,9 +9,9 @@ module.exports = class NetExecutor extends InterfaceExecutor
   port: undefined
   callback: undefined
 
-  constructor: (@host, @port, @callback) ->
+  constructor: (@host, @port) ->
 
-  execute: (request) ->
+  execute: (request, @callback) ->
     createConnection()
     writeConnection(buildRequest(request))
 
