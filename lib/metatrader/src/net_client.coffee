@@ -5,6 +5,6 @@ module.exports = class HttpsClient extends InterfaceClient
   constructor: (@executor) ->
 
   send: (command, callback) ->
-    request = command.generateRequiest()
+    request = command.generateRequest()
     @executor.execute request, =>
       callback(command.processResponse())
