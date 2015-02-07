@@ -8,3 +8,5 @@ MetaTrader.InterfaceCommand = require('./src/interface_command.js')
 MetaTrader.NetClient = require('./src/net_client.js')
 MetaTrader.NetCreator = require('./src/net_creator.js')
 MetaTrader.NetExecutor = require('./src/net_executor.js')
+
+MetaTrader.QuotesCommand = require('./src/quotes_command.js')

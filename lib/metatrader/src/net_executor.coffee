@@ -8,6 +8,7 @@ module.exports = class NetExecutor extends InterfaceExecutor
   host: undefined
   port: undefined
   callback: undefined
+  buffer: ""
 
   constructor: (@host, @port) ->
 
@@ -20,8 +21,12 @@ module.exports = class NetExecutor extends InterfaceExecutor
     "W#{request},\nQUIT\n"
 
   readConnection: (data) ->
-    @closeConnection()
-    @callback(data)
+    regexp = /^\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2}$/m
+    @buffer += data.toString()
+    
+    if @buffer.search(regexp) >= 0
+      @closeConnection()
+      @callback(@buffer)
 
   closeConnection: ->
     @connection.destroy()
