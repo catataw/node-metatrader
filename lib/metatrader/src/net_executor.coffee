@@ -18,6 +18,9 @@ module.exports = class NetExecutor extends InterfaceExecutor
         @error = ->
       @connection = net.createConnection @port, @host, =>
         @connection.write(@buildRequest(request))
+      @connection.on 'close', =>
+        if !@stop_read_callback(@buffer)
+          @error
       @connection.on 'error', (error) =>
         console.log('Connection error: %s', error)
         @error(error)
