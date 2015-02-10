@@ -20,7 +20,7 @@ module.exports = class NetExecutor extends InterfaceExecutor
         @connection.write(@buildRequest(request))
       @connection.on 'close', =>
         if !@stop_read_callback(@buffer)
-          @error
+          @error('Connection timeout!')
       @connection.on 'error', (error) =>
         console.log('Connection error: %s', error)
         @error(error)
