@@ -23,7 +23,7 @@ module.exports = class QuotesCommand extends InterfaceCommand
     "HISTORYNEW-symbol=#{@symbol}|period=#{@period}|from=#{@from}|to=#{@to}"
 
   stopReadCallback: (buffer) ->
-    (12) + buffer.readInt32LE(0) * (28) <= buffer.length
+    @buffer.length > 0 && (12) + buffer.readInt32LE(0) * (28) <= buffer.length
 
   processResponse: (response) ->
     result = []

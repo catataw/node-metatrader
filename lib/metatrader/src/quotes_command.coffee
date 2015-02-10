@@ -11,7 +11,7 @@ module.exports = class QuotesCommand extends InterfaceCommand
     "QUOTES-#{@symbols.join(',')},"
 
   stopReadCallback: (buffer) ->
-    @buffer.toString().search(/^\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2}$/m) >= 0
+    @buffer.length > 0 && @buffer.toString().search(/^\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2}$/m) >= 0
 
   processResponse: (response) ->
     mappingResponse(
