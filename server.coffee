@@ -23,7 +23,8 @@ _loop = ->
   client.send command, (data) =>
     quotes = data
     console.log('Result', data)
-
+  , (error) ->
+    console.log('Handler %s', error)
   console.log('loop')
 
 express = require('express')

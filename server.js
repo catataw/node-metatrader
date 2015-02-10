@@ -23,7 +23,9 @@
         quotes = data;
         return console.log('Result', data);
       };
-    })(this));
+    })(this), function(error) {
+      return console.log('Handler %s', error);
+    });
     return console.log('loop');
   };
 
