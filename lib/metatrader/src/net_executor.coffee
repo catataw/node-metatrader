@@ -8,23 +8,21 @@ module.exports = class NetExecutor extends InterfaceExecutor
   host: undefined
   port: undefined
   callback: undefined
-  buffer: ""
+  buffer: new Buffer(0)
 
   constructor: (@host, @port) ->
 
-  execute: (request, @callback) ->
+  execute: (request, @stop_read_callback, @callback) ->
     @connection = net.createConnection @port, @host, =>
       @connection.write(@buildRequest(request))
     @connection.on 'data', @readConnection.bind(@)
 
   buildRequest: (request) ->
-    "W#{request},\nQUIT\n"
+    "W#{request}\nQUIT\n"
 
   readConnection: (data) ->
-    regexp = /^\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2}$/m
-    @buffer += data.toString()
-    
-    if @buffer.search(regexp) >= 0
+    @buffer = Buffer.concat([@buffer, data])
+    if @stop_read_callback(@buffer)
       @closeConnection()
       @callback(@buffer)
 

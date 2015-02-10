@@ -4,9 +4,10 @@
   "author": "Kiba;The <agrekov@aforex.ru>",
   "repository": "thekiba/node-metatrader",
   "dependencies": {
-    "express": ">=4.11.2",
+    "express": "~4.11.2",
     "express-autoload": ">=0.2.0",
-    "coffee-script": ">=1.0.0"
+    "coffee-script": ">=1.0.0",
+    "iconv":"~2.1.5"
   },
   "engines": {
     "node": ">= 0.10.0"

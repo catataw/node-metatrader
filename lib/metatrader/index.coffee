@@ -10,3 +10,4 @@ MetaTrader.NetCreator = require('./src/net_creator.js')
 MetaTrader.NetExecutor = require('./src/net_executor.js')
 
 MetaTrader.QuotesCommand = require('./src/quotes_command.js')
+MetaTrader.CandlesCommand = require('./src/candles_command.js')

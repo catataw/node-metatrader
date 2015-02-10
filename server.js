@@ -13,19 +13,19 @@
   quotes = [];
 
   _loop = function() {
-    var client, command, executor;
+    var client, command, executor, timenow;
     executor = creator.createExecutor(config);
     client = creator.createClient(executor);
-    command = new metatrader.QuotesCommand(symbols);
+    timenow = (new Date()).getTime() / 1000;
+    command = new metatrader.CandlesCommand('EURUSDb', 60, timenow - 1, timenow);
     client.send(command, (function(_this) {
       return function(data) {
-        return quotes = data;
+        quotes = data;
+        return console.log('Result', data);
       };
     })(this));
     return console.log('loop');
   };
-
-  setInterval(_loop, 1000);
 
   express = require('express');
 
@@ -41,5 +41,7 @@
     port = server.address().port;
     return console.log('MetaTrader Proxy app listening at http://%s:%s', host, port);
   });
+
+  _loop();
 
 }).call(this);

@@ -17,13 +17,14 @@ quotes = []
 _loop = ->
   executor = creator.createExecutor(config)
   client = creator.createClient(executor)
-  command = new metatrader.QuotesCommand(symbols)
+  timenow = (new Date()).getTime() / 1000
+  command = new metatrader.CandlesCommand('EURUSDb', 60, timenow - 1, timenow)
+  # command = new metatrader.QuotesCommand(symbols)
   client.send command, (data) =>
     quotes = data
+    console.log('Result', data)
 
   console.log('loop')
-
-setInterval(_loop, 1000)
 
 express = require('express')
 app = express()
@@ -36,3 +37,5 @@ server = app.listen 4000, ->
   port = server.address().port
 
   console.log('MetaTrader Proxy app listening at http://%s:%s', host, port)
+
+_loop()

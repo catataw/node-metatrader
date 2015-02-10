@@ -8,12 +8,15 @@ module.exports = class QuotesCommand extends InterfaceCommand
   constructor: (@symbols) ->
 
   generateRequest: ->
-    "QUOTES-#{@symbols.join(',')}"
+    "QUOTES-#{@symbols.join(',')},"
+
+  stopReadCallback: (buffer) ->
+    @buffer.toString().search(/^\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2}$/m) >= 0
 
   processResponse: (response) ->
     mappingResponse(
       filterResponse(
-        explodeResponse(response)))
+        explodeResponse(response.toString())))
 
   explodeResponse = (response) ->
     response.split("\n").map (row) ->
