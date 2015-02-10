@@ -1,5 +1,4 @@
 InterfaceCommand = require('./interface_command.js')
-Iconv  = require('iconv').Iconv
 
 module.exports = class QuotesCommand extends InterfaceCommand
   

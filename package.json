@@ -6,11 +6,10 @@
   "dependencies": {
     "express": "~4.11.2",
     "express-autoload": ">=0.2.0",
-    "coffee-script": ">=1.0.0",
-    "iconv":"~2.1.5"
+    "coffee-script": ">=1.0.0"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": "~0.8.26"
   },
   "files": [
     "index.js",
