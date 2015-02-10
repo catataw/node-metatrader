@@ -16,6 +16,8 @@ module.exports = class NetExecutor extends InterfaceExecutor
     try
       @connection = net.createConnection @port, @host, =>
         @connection.write(@buildRequest(request))
+      @connection.on 'error', (error) ->
+        console.log('Connection error: %s', error)
       @connection.on 'data', @readConnection.bind(@)
     catch e
       console.log(e)

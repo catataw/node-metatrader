@@ -38,4 +38,4 @@ server = app.listen 4000, ->
 
   console.log('MetaTrader Proxy app listening at http://%s:%s', host, port)
 
-_loop()
+setInterval(_loop, 5000)
