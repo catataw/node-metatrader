@@ -36,7 +36,8 @@ module.exports = class QuotesCommand extends InterfaceCommand
     return result
 
   fetch = (response, struct) ->
-    struct.map (item) =>
-      row = {name: item.name, value: response[item.handler](@offset)}
+    struct.reduce (row, item) =>
+      row[item.name] = response[item.handler](@offset)
       @offset += item.size
       return row
+    , {}

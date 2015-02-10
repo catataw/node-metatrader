@@ -13,9 +13,12 @@ module.exports = class NetExecutor extends InterfaceExecutor
   constructor: (@host, @port) ->
 
   execute: (request, @stop_read_callback, @callback) ->
-    @connection = net.createConnection @port, @host, =>
-      @connection.write(@buildRequest(request))
-    @connection.on 'data', @readConnection.bind(@)
+    try
+      @connection = net.createConnection @port, @host, =>
+        @connection.write(@buildRequest(request))
+      @connection.on 'data', @readConnection.bind(@)
+    catch e
+      console.log(e)
 
   buildRequest: (request) ->
     "W#{request}\nQUIT\n"
